@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap" rel="stylesheet">
+<title>Jogo de Vestir </title>
+<style>
+  body {
+    font-family: "Poppins", Arial, sans-serif;
+    background: linear-gradient(180deg, #f9e6ff, #e0c3fc);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+    color: #333;
+    overflow: hidden;
+  }
+
+  .container {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    gap: 50px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .game-area {
+    position: relative;
+    width: 800px;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .game-area img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 550px;
+    min-width: 400px;
+    z-index: 2;
+  }
+
+  h1 {
+    font-family: 'Clicker Script', cursive;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 3rem;
+    color: #7c3a8d;
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .section h2 {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 5px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+.buttons button {
+  padding: 16px 20px;
+  border: none;
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6); /* degradê lilás */
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 12px; /* borda mais arredondada */
+  transition: all 0.3s;
+  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4); /* sombra suave */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+   font-family:'Clicker Script', cursive;
+  font-size: 14px; /* você pode ajustar o tamanho */
+}
+
+.buttons button:hover {
+  background: linear-gradient(135deg, #8b5cf6, #c4b5fd); /* degradê ao passar o mouse */
+  transform: scale(1.08); /* leve zoom */
+  box-shadow: 0 6px 12px rgba(139, 92, 246, 0.5); /* sombra mais forte */
+}
+
+  /* Efeito neon ao clicar */
+  .neon-click {
+    animation: neonPulse 0.6s ease forwards;
+  }
+
+  @keyframes neonPulse {
+    0% {
+      box-shadow: 0 0 0 #fff, 0 0 0 #da94da, 0 0 0 #ffaeff;
+    }
+    50% {
+      box-shadow: 0 0 10px #fff, 0 0 20px #e492e4, 0 0 30px #d38cd3;
+    }
+    100% {
+      box-shadow: 0 0 0 #fff, 0 0 0 #eb9ceb, 0 0 0 hsl(300, 100%, 83%);
+    }
+  }
+
+  /* Fundo animado de corações */
+  .heart {
+    position: fixed;
+    bottom: -20px;
+    color: #f3037b;
+    font-size: 20px;
+    animation: subir 8s linear infinite;
+    opacity: 0.8;
+    z-index: 0;
+  }
+
+  @keyframes subir {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-110vh) scale(1.5);
+      opacity: 0;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Animação de corações -->
+<script>
+  function criarCoracao() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.textContent = '♡';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+    heart.style.animationDuration = 5 + Math.random() * 5 + 's';
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 8000);
+  }
+
+  setInterval(criarCoracao, 400);
+</script>
+
+<div class="container">
+
+  <!-- Personagem -->
+  <div class="game-area">
+    <img id="pele" src="imagens/pele1.png" alt="Pele">
+    <img id="cabelo" src="imagens/cabeloPreto.png" alt="Cabelo">
+    <img id="roupa" src="imagens/vestido.png" alt="Roupa">
+    <img id="rostos" src="imagens/olhoAzul.png" alt="Rosto">
+  </div>
+
+  <!-- Menu de opções -->
+  <div class="menu">
+    <h1>Vista Rebeca para passear!</h1>
+
+    <div class="section">
+      <h2>Pele</h2>
+      <div class="buttons">
+        <button onclick="mudarPele('imagens/pele1.png')">Pele 1</button>
+        <button onclick="mudarPele('imagens/pele2.png')">Pele 2</button>
+        <button onclick="mudarPele('imagens/pele3.png')">Pele 3</button>
+        <button onclick="mudarPele('imagens/pele4.png')">Pele 4</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Cabelos</h2>
+      <div class="buttons">
+        <button onclick="mudarCabelo('imagens/cabeloPreto.png')">Cabelo Preto</button>
+        <button onclick="mudarCabelo('imagens/cabeloRuivo.png')">Cabelo Ruivo</button>
+        <button onclick="mudarCabelo('imagens/cabeloLoiro.png')">Cabelo Loiro</button>
+        <button onclick="mudarCabelo('imagens/cabeloRosa.png')">Cabelo Rosa</button>
+        <button onclick="mudarCabelo('imagens/cabeloCacheado.png')">Cabelo Cacheado</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Roupas</h2>
+      <div class="buttons">
+        <button onclick="mudarRoupa('imagens/vestido.png')">Vestido</button>
+        <button onclick="mudarRoupa('imagens/uniforme.png')">Uniforme</button>
+        <button onclick="mudarRoupa('imagens/macaquinho.png')">Jardineira</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Rostos</h2>
+      <div class="buttons">
+        <button onclick="mudarRostos('imagens/olhoAzul.png')">Olhos Azuis</button>
+        <button onclick="mudarRostos('imagens/olhoVerde.png')">Olhos Verdes</button>
+        <button onclick="mudarRostos('imagens/olhoPreto.png')">Olhos Pretos</button>
+        <button onclick="mudarRostos('imagens/olhoRosa.png')">Olhos Rosa</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Funções para mudar o personagem
+  function mudarPele(imagem) {
+    document.getElementById("pele").src = imagem;
+  }
+
+  function mudarCabelo(imagem) {
+    document.getElementById("cabelo").src = imagem;
+  }
+
+  function mudarRoupa(imagem) {
+    document.getElementById("roupa").src = imagem;
+  }
+
+  function mudarRostos(imagem) {
+    document.getElementById("rostos").src = imagem;
+  }
+
+  // Adiciona efeito neon aos botões
+  const botoes = document.querySelectorAll('.buttons button');
+  botoes.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.add('neon-click');
+      setTimeout(() => btn.classList.remove('neon-click'), 600); // duração igual à animação
+    });
+  });
+</script>
+
+</body>
+</html>
