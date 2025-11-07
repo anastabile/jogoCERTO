@@ -1,13 +1,103 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap" rel="stylesheet">
-<title>Jogo de Vestir </title>
+<title>Jogo de Vestir</title>
 <style>
+  /* Tela inicial */
+  .start-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #f9e6ff, #e0c3fc);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* acima de tudo */
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* contêiner de corações dentro da start-screen (fica atrás do conteúdo) */
+  #hearts-start {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+  }
+  /* garante que título, botões, etc fiquem acima dos corações */
+  .start-screen > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .titulo-inicio {
+    font-family: 'Clicker Script', cursive;
+    font-size: 5rem;
+    color: #7c3a8d;
+    margin-bottom: 20px;
+  }
+
+  .creditos {
+    font-size: 1.3rem;
+    color: #555;
+    margin-bottom: 40px;
+  }
+
+  .btn-start {
+    padding: 18px 35px;
+    font-size: 1.7rem;
+    font-family: 'Clicker Script', cursive;
+    background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
+  }
+
+  .btn-start:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 12px rgba(139, 92, 246, 0.5);
+  }
+
+  .side-buttons {
+    position: fixed;
+    left: 30px;        
+    top: 50%;                 /* posiciona no meio da tela */
+    transform: translateY(-50%);   /* centraliza de verdade */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 20;
+  }
+
+  .side-buttons button {
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(139, 92, 246, 0.4);
+    transition: 0.25s;
+  }
+
+  .side-buttons button:hover {
+    transform: scale(1.07);
+  }
+
   body {
     font-family: "Poppins", Arial, sans-serif;
     background: linear-gradient(180deg, #f9e6ff, #e0c3fc);
@@ -21,13 +111,14 @@
   }
 
   .container {
-    display: flex;
+    /* O display padrão do container será definido inline (start oculto) */
     max-width: 1200px;
     width: 100%;
     gap: 50px;
     align-items: center;
     position: relative;
     z-index: 2;
+    display: flex;
   }
 
   .game-area {
@@ -48,13 +139,14 @@
   .menu {
     display: flex;
     flex-direction: column;
-    gap: 35px;
+    gap: 20px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 16px;
-    padding: 40px;
+    padding: 20px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    width: 550px;
-    min-width: 400px;
+    width: 800px;
+    min-width: 300px;
+    overflow-y: auto;
     z-index: 2;
   }
 
@@ -70,40 +162,45 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center;
+    text-align: center;
   }
 
   .section h2 {
-    font-size: 1.2rem;
+    font-family: 'Clicker Script', cursive;
+    text-align: center;
+    font-size: 2rem;
     color: #444;
     margin-bottom: 5px;
   }
 
   .buttons {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;      /* impede quebrar linha */
     gap: 20px;
     justify-content: center;
+    overflow-x: auto;       /* se faltar espaço, permite rolagem horizontal */
+    padding-bottom: 8px;
   }
-.buttons button {
-  padding: 16px 20px;
-  border: none;
-  background: linear-gradient(135deg, #a78bfa, #8b5cf6); /* degradê lilás */
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 12px; /* borda mais arredondada */
-  transition: all 0.3s;
-  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4); /* sombra suave */
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-   font-family:'Clicker Script', cursive;
-  font-size: 14px; /* você pode ajustar o tamanho */
-}
+  .buttons button {
+    padding: 16px 20px;
+    border: none;
+    background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    font-size: 14px;
+  }
 
-.buttons button:hover {
-  background: linear-gradient(135deg, #8b5cf6, #c4b5fd); /* degradê ao passar o mouse */
-  transform: scale(1.08); /* leve zoom */
-  box-shadow: 0 6px 12px rgba(139, 92, 246, 0.5); /* sombra mais forte */
-}
+  .buttons button:hover {
+    background: linear-gradient(135deg, #8b5cf6, #c4b5fd);
+    transform: scale(1.08);
+    box-shadow: 0 6px 12px rgba(139, 92, 246, 0.5);
+  }
 
   /* Efeito neon ao clicar */
   .neon-click {
@@ -131,6 +228,8 @@
     animation: subir 8s linear infinite;
     opacity: 0.8;
     z-index: 0;
+    pointer-events: none;
+    user-select: none;
   }
 
   @keyframes subir {
@@ -143,36 +242,34 @@
       opacity: 0;
     }
   }
-
 </style>
 </head>
 <body>
 
-<!-- Animação de corações -->
-<script>
-  function criarCoracao() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.textContent = '♡';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-    heart.style.animationDuration = 5 + Math.random() * 5 + 's';
-    document.body.appendChild(heart);
+<!-- TELA INICIAL -->
+<div id="tela-inicial" class="start-screen">
+  <!-- contêiner exclusivo de corações da tela inicial -->
+  <div id="hearts-start"></div>
 
-    setTimeout(() => heart.remove(), 8000);
-  }
+  <h1 class="titulo-inicio">Jogo de Vestir</h1>
+  <p class="creditos">Desenvolvido por Ana Luiza Stábile</p>
+  <button id="btnStart" class="btn-start">Iniciar Jogo</button>
+</div>
 
-  setInterval(criarCoracao, 400);
-</script>
-
-<div class="container">
-
+<!-- Container do jogo (inicia oculto com style) -->
+<div class="container" id="game-container" style="display:none;">
   <!-- Personagem -->
   <div class="game-area">
     <img id="pele" src="imagens/pele1.png" alt="Pele">
-    <img id="cabelo" src="imagens/cabeloPreto.png" alt="Cabelo">
-    <img id="roupa" src="imagens/vestido.png" alt="Roupa">
-    <img id="rostos" src="imagens/olhoAzul.png" alt="Rosto">
+    <img id="cabelo" src="" alt="Cabelo">
+    <img id="roupa" src="" alt="Roupa">
+    <img id="rostos" src="" alt="Rosto">
+  </div>
+
+  <!-- botões laterais -->
+  <div class="side-buttons">
+    <button id="btnLimpar">Limpar</button>
+    <button id="btnPronto">Pronto</button>
   </div>
 
   <!-- Menu de opções -->
@@ -222,31 +319,179 @@
 </div>
 
 <script>
-  // Funções para mudar o personagem
-  function mudarPele(imagem) {
-    document.getElementById("pele").src = imagem;
+  // Funções que geram corações
+  function criarCoracaoParaContainer(container) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.textContent = '♡';
+
+    // posição horizontal aleatória dentro da viewport
+    const left = Math.random() * 100;
+    heart.style.left = left + 'vw';
+
+    // tamanho aleatório
+    heart.style.fontSize = (10 + Math.random() * 24) + 'px';
+
+    // duração aleatória da animação
+    heart.style.animationDuration = (4 + Math.random() * 5) + 's';
+
+    container.appendChild(heart);
+
+    // remove o elemento após a animação terminar (um pouco mais que animationDuration)
+    setTimeout(() => {
+      if (heart && heart.parentNode) heart.parentNode.removeChild(heart);
+    }, (parseFloat(heart.style.animationDuration) * 1000) + 500);
   }
 
-  function mudarCabelo(imagem) {
-    document.getElementById("cabelo").src = imagem;
+  // Variáveis dos intervalos (globais para controlar)
+  let intervaloInicio = null;
+  let intervaloGame = null;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnStart = document.getElementById('btnStart');
+    const telaInicial = document.getElementById('tela-inicial');
+    const gameContainer = document.getElementById('game-container');
+    const heartsStartContainer = document.getElementById('hearts-start');
+
+    // Inicia a animação de corações SÓ na tela inicial
+    intervaloInicio = setInterval(() => {
+      criarCoracaoParaContainer(heartsStartContainer);
+    }, 400);
+
+    // Quando clicar em iniciar jogo:
+btnStart.addEventListener('click', () => {
+  if (intervaloInicio) {
+    clearInterval(intervaloInicio);
+    intervaloInicio = null;
   }
 
-  function mudarRoupa(imagem) {
-    document.getElementById("roupa").src = imagem;
+  if (heartsStartContainer) heartsStartContainer.innerHTML = '';
+
+  telaInicial.style.display = 'none';
+  gameContainer.style.display = 'flex';
+
+  if (!intervaloGame) {
+    intervaloGame = setInterval(() => {
+      criarCoracaoParaContainer(document.body);
+    }, 400);
   }
 
-  function mudarRostos(imagem) {
-    document.getElementById("rostos").src = imagem;
-  }
+  // ✅ CHAMA O POP-UP AQUI
+  mostrarOcasionPopUp();
+});
 
-  // Adiciona efeito neon aos botões
-  const botoes = document.querySelectorAll('.buttons button');
-  botoes.forEach(btn => {
-    btn.addEventListener('click', () => {
-      btn.classList.add('neon-click');
-      setTimeout(() => btn.classList.remove('neon-click'), 600); // duração igual à animação
+
+    // Funções para mudar o personagem (expostas em window)
+    window.mudarPele = function(imagem) {
+      const el = document.getElementById("pele");
+      if (el) el.src = imagem;
+    };
+
+    window.mudarCabelo = function(imagem) {
+      const el = document.getElementById("cabelo");
+      if (el) el.src = imagem;
+    };
+
+    window.mudarRoupa = function(imagem) {
+      const el = document.getElementById("roupa");
+      if (el) el.src = imagem;
+    };
+
+    window.mudarRostos = function(imagem) {
+      const el = document.getElementById("rostos");
+      if (el) el.src = imagem;
+    };
+
+    // Adiciona efeito neon aos botões (somente depois do DOM)
+    const botoes = document.querySelectorAll('.buttons button');
+    botoes.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.add('neon-click');
+        setTimeout(() => btn.classList.remove('neon-click'), 600);
+      });
     });
+
+    // --- handlers dos botões laterais (Limpar / Pronto) ---
+    const btnLimpar = document.getElementById('btnLimpar');
+    const btnPronto = document.getElementById('btnPronto');
+
+    btnLimpar.addEventListener('click', () => {
+      // Reseta tudo: volta para pele1 e limpa os outros atributos
+      const pele = document.getElementById('pele');
+      const cabelo = document.getElementById('cabelo');
+      const roupa = document.getElementById('roupa');
+      const rostos = document.getElementById('rostos');
+
+      if (pele) pele.src = 'imagens/pele1.png';
+      if (cabelo) cabelo.src = '';
+      if (roupa) roupa.src = '';
+      if (rostos) rostos.src = '';
+    });
+
+    btnPronto.addEventListener('click', () => {
+      // Aqui você decide o que acontece quando o usuário clica "Pronto".
+      // Por exemplo: alert, salvar estado, avançar de tela, etc.
+      alert('Pronto! (adicione aqui a ação que você quer executar)');
+    });
+    // --- fim handlers ---
   });
+  // Ocasiões possíveis
+const ocasioes = ["escola", "festa", "parque", "shopping"];
+
+// Função para sortear e mostrar o pop-up
+function mostrarOcasionPopUp() {
+    const sorteada = ocasioes[Math.floor(Math.random() * ocasioes.length)];
+
+    // Cria o fundo escuro
+    const bg = document.createElement("div");
+    bg.style.position = "fixed";
+    bg.style.top = "0";
+    bg.style.left = "0";
+    bg.style.width = "100vw";
+    bg.style.height = "100vh";
+    bg.style.background = "rgba(0,0,0,0.5)";
+    bg.style.display = "flex";
+    bg.style.alignItems = "center";
+    bg.style.justifyContent = "center";
+    bg.style.zIndex = "9999";
+
+    // Caixa branca
+    const box = document.createElement("div");
+    box.style.background = "white";
+    box.style.padding = "25px 35px";
+    box.style.borderRadius = "15px";
+    box.style.textAlign = "center";
+    box.style.fontSize = "20px";
+    box.style.fontFamily = "Arial";
+    box.style.boxShadow = "0 5px 20px rgba(0,0,0,0.25)";
+
+    // Texto
+    const texto = document.createElement("p");
+    texto.innerText = "Ocasião sorteada:\n" + sorteada.toUpperCase();
+    texto.style.marginBottom = "20px";
+    texto.style.fontWeight = "bold";
+
+    // Botão OK
+    const botao = document.createElement("button");
+    botao.innerText = "OK";
+    botao.style.padding = "10px 20px";
+    botao.style.background = "#6d5dfc";
+    botao.style.color = "white";
+    botao.style.border = "none";
+    botao.style.borderRadius = "10px";
+    botao.style.cursor = "pointer";
+    botao.style.fontSize = "18px";
+
+    botao.onclick = () => {
+        document.body.removeChild(bg);
+    };
+
+    box.appendChild(texto);
+    box.appendChild(botao);
+    bg.appendChild(box);
+    document.body.appendChild(bg);
+}
+
 </script>
 
 </body>
