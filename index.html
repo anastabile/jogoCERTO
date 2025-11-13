@@ -9,35 +9,33 @@
 <title>Jogo de Vestir</title>
 
 <style>
-  /* Tela inicial */
-  .start-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, #f9e6ff, #e0c3fc);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-    text-align: center;
-    overflow: hidden;
-  }
+/* ======================== */
+/* TELA INICIAL */
+/* ======================== */
+.start-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(180deg, #f9e6ff, #e0c3fc);
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  z-index: 999;
+  overflow: hidden;
+}
 
-  #hearts-start {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    z-index: 0;
-    pointer-events: none;
-  }
+#hearts-start {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
 
-  .start-screen > * {
-    position: relative;
-    z-index: 2;
-  }
+.start-screen > * {
+  position: relative;
+  z-index: 2;
+}
 
 .titulo-inicio {
   font-family: 'Clicker Script', cursive;
@@ -47,214 +45,269 @@
   animation: pulsarSimples 2s ease-in-out infinite;
 }
 
-/* Pulsando suave sem neon */
 @keyframes pulsarSimples {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.05); }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
 
-  .creditos {
-    font-size: 1.3rem;
-    color: #555;
-    margin-bottom: 40px;
-  }
+.creditos {
+  font-size: 1.3rem;
+  color: #555;
+  margin-bottom: 40px;
+}
 
-  .btn-start {
-    padding: 18px 35px;
-    font-size: 1.7rem;
-    font-family: 'Clicker Script', cursive;
-    background: linear-gradient(135deg, #a78bfa, #8b5cf6);
-    color: #fff;
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
-  }
+.btn-start {
+  padding: 18px 35px;
+  font-size: 1.7rem;
+  font-family: 'Clicker Script', cursive;
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
+}
+.btn-start:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 12px rgba(139, 92, 246, 0.5);
+}
 
-  .btn-start:hover {
-    transform: scale(1.08);
-    box-shadow: 0 6px 12px rgba(139, 92, 246, 0.5);
-  }
+/* ======================== */
+/* GAME BODY */
+/* ======================== */
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(180deg, #f9e6ff, #e0c3fc);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #333;
+  overflow: hidden;
+}
 
-  .side-buttons {
-    position: fixed;
-    left: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 20;
-  }
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  max-width: 1400px;
+  width: 100%;
+  height: 90vh;
+  box-sizing: border-box;
+  position: relative; /* Para posicionar corações absolutos aqui */
+}
 
-  .side-buttons button {
-    padding: 14px 20px;
-    background: linear-gradient(135deg, #a78bfa, #8b5cf6);
-    border: none;
-    border-radius: 12px;
-    color: white;
-    font-size: 18px;
-    font-family: "Poppins", sans-serif;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(139, 92, 246, 0.4);
-    transition: 0.25s;
-  }
+/* PERSONAGEM MAIOR E CENTRALIZADA */
+.game-area {
+  position: relative;
+  width: 600px;
+  height: 850px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
 
-  .side-buttons button:hover {
-    transform: scale(1.07);
-  }
+/* Centralização e camadas */
+.game-area img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
 
-  body {
-    font-family: "Poppins", Arial, sans-serif;
-    background: linear-gradient(180deg, #f9e6ff, #e0c3fc);
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 40px;
-    color: #333;
-    overflow: hidden;
-  }
+/* Ordem de camadas do personagem */
+#pele { z-index: 1; }
+#rostos { z-index: 2; }
+#cabelo { z-index: 3; }
+#roupa { z-index: 4; }
 
-  .container {
-    max-width: 1200px;
-    width: 100%;
-    gap: 50px;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-    display: flex;
-  }
+/* MENU MAIS BAIXO E LARGO */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 20px 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  width: 650px;          
+  height: 700px;         
+  overflow-y: auto;
+  box-sizing: border-box;
+  z-index: 15;
+}
 
-  .game-area {
-    position: relative;
-    width: 800px;
-    height: 800px;
-    display: flex;
-    justify-content: center;
-  }
+.menu::-webkit-scrollbar {
+  width: 8px;
+}
+.menu::-webkit-scrollbar-thumb {
+  background: #b48ef7;
+  border-radius: 8px;
+}
+.menu::-webkit-scrollbar-track {
+  background: transparent;
+}
 
-  .game-area img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
+h1 {
+  font-family: 'Clicker Script', cursive;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 2.8rem;
+  color: #7c3a8d;
+}
 
-  .menu {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    width: 800px;
-    min-width: 300px;
-    overflow-y: auto;
-    z-index: 2;
-  }
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
 
-  h1 {
-    font-family: 'Clicker Script', cursive;
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 3rem;
-    color: #7c3a8d;
-  }
+.section h2 {
+  font-family: 'Clicker Script', cursive;
+  font-size: 1.8rem;
+  color: #444;
+  margin-bottom: 4px;
+}
 
-  .section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    text-align: center;
-  }
+/* BOTÕES AGRUPADOS DE FORMA BONITA */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
 
-  .section h2 {
-    font-family: 'Clicker Script', cursive;
-    text-align: center;
-    font-size: 2rem;
-    color: #444;
-    margin-bottom: 5px;
-  }
+.buttons button {
+  flex: 1 1 45%;
+  max-width: 45%;
+  padding: 10px 0;
+  border: none;
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  font-size: 13px;
+}
 
-  .buttons {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 20px;
-    justify-content: center;
-    overflow-x: auto;
-    padding-bottom: 8px;
-  }
+.buttons button:hover {
+  background: linear-gradient(135deg, #8b5cf6, #c4b5fd);
+  transform: scale(1.05);
+}
 
-  .buttons button {
-    padding: 16px 20px;
-    border: none;
-    background: linear-gradient(135deg, #a78bfa, #8b5cf6);
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 12px;
-    transition: all 0.3s;
-    box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    font-size: 14px;
-  }
+/* BOTÕES LATERAIS */
+.side-buttons {
+  padding: 10px 18px;
+  position: fixed;
+  left: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 20;
+}
 
-  .buttons button:hover {
-    background: linear-gradient(135deg, #8b5cf6, #c4b5fd);
-    transform: scale(1.08);
-    box-shadow: 0 6px 12px rgba(139, 92, 246, 0.5);
-  }
+.side-buttons button {
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(139, 92, 246, 0.4);
+  transition: 0.25s;
+}
 
-  .heart {
-    position: fixed;
-    bottom: -20px;
-    color: #d448ff;
-    font-size: 20px;
-    animation: subir 8s linear infinite;
-    opacity: 0.8;
-    z-index: 0;
-    pointer-events: none;
-    user-select: none;
-  }
+.side-buttons button:hover {
+  transform: scale(1.07);
+}
 
-  @keyframes subir {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
-  }
+/* ======================== */
+/* CORAÇÕES ANIMADOS */
+/* ======================== */
+.heart {
+  position: absolute; /* para corações da tela inicial */
+  bottom: -20px;
+  color: #d448ff;
+  font-size: 20px;
+  animation: subir 8s linear infinite;
+  opacity: 0.8;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+@keyframes subir {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+}
+
+/* Container corações na tela do jogo */
+#hearts-game {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1; /* atrás */
+
+}
+
+#hearts-game .heart {
+  position: absolute;
+  bottom: -20px;
+  color: #d448ff;
+  font-size: 20px;
+  animation: subir 8s linear infinite;
+  opacity: 0.8;
+  pointer-events: none;
+  user-select: none;
+}
 </style>
 </head>
 
 <body>
 
-<!-- TELA INICIAL -->
+<!-- =============== TELA INICIAL =============== -->
 <div id="tela-inicial" class="start-screen">
   <div id="hearts-start"></div>
-
   <h1 class="titulo-inicio">Jogo de Vestir</h1>
   <p class="creditos">Desenvolvido por Ana Luiza Stábile</p>
   <button id="btnStart" class="btn-start">Iniciar Jogo</button>
 </div>
 
-<!-- Container -->
+<!-- =============== JOGO =============== -->
 <div class="container" id="game-container" style="display:none;">
 
   <div class="game-area">
     <img id="pele" src="imagens/pele1.png">
+    <img id="rostos" src="">
     <img id="cabelo" src="">
     <img id="roupa" src="">
-    <img id="rostos" src="">
   </div>
 
-<div class="side-buttons">
+  <div id="hearts-game"></div> <!-- container para corações no jogo -->
+
+  <div class="side-buttons">
     <button id="btnLimpar">Limpar</button>
     <button id="btnPronto">Pronto</button>
     <button id="btnVoltar">Voltar</button>
-</div>
+  </div>
 
   <div class="menu">
     <h1 id="tituloTema">Vista-se para ...</h1>
@@ -272,11 +325,12 @@
     <div class="section">
       <h2>Cabelos</h2>
       <div class="buttons">
-        <button onclick="mudarCabelo('imagens/cabeloPreto.png')">Cabelo Preto</button>
-        <button onclick="mudarCabelo('imagens/cabeloRuivo.png')">Cabelo Ruivo</button>
-        <button onclick="mudarCabelo('imagens/cabeloLoiro.png')">Cabelo Loiro</button>
-        <button onclick="mudarCabelo('imagens/cabeloRosa.png')">Cabelo Rosa</button>
-        <button onclick="mudarCabelo('imagens/cabeloCacheado.png')">Cabelo Cacheado</button>
+        <button onclick="mudarCabelo('imagens/cabeloPreto.png')">Preto</button>
+        <button onclick="mudarCabelo('imagens/cabeloRuivo.png')">Ruivo</button>
+        <button onclick="mudarCabelo('imagens/cabeloLoiro.png')">Loiro</button>
+        <button onclick="mudarCabelo('imagens/cabeloRosa.png')">Rosa</button>
+        <button onclick="mudarCabelo('imagens/cabeloCacheado.png')">Cacheado</button>
+        <button onclick="mudarCabelo('imagens/cabeloCastanho.png')">Castanho</button>
       </div>
     </div>
 
@@ -287,6 +341,8 @@
         <button onclick="mudarRoupa('imagens/uniforme.png')">Uniforme</button>
         <button onclick="mudarRoupa('imagens/macaquinho.png')">Jardineira</button>
         <button onclick="mudarRoupa('imagens/vestidoAzul.png')">Vestido Azul</button>
+        <button onclick="mudarRoupa('imagens/roupaVermelha.png')">Vermelha</button>
+        <button onclick="mudarRoupa('imagens/roupaAmarela.png')">Amarela</button>
       </div>
     </div>
 
@@ -299,52 +355,44 @@
         <button onclick="mudarRostos('imagens/olhoRosa.png')">Olhos Rosa</button>
       </div>
     </div>
-
   </div>
 </div>
 
 <script>
-
 function criarCoracaoParaContainer(container) {
   const heart = document.createElement('div');
   heart.classList.add('heart');
   heart.textContent = '♡';
-
   heart.style.left = Math.random() * 100 + 'vw';
   heart.style.fontSize = (10 + Math.random() * 24) + 'px';
   heart.style.animationDuration = (4 + Math.random() * 5) + 's';
-
   container.appendChild(heart);
-
   setTimeout(() => heart.remove(), 6000);
 }
 
 let intervaloInicio = null;
-let intervaloGame = null;
+let intervaloJogo = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   const btnStart = document.getElementById('btnStart');
   const telaInicial = document.getElementById('tela-inicial');
   const gameContainer = document.getElementById('game-container');
   const heartsStartContainer = document.getElementById('hearts-start');
+  const heartsGameContainer = document.getElementById('hearts-game');
 
-  intervaloInicio = setInterval(() => {
-    criarCoracaoParaContainer(heartsStartContainer);
-  }, 400);
+  intervaloInicio = setInterval(() => criarCoracaoParaContainer(heartsStartContainer), 400);
 
   btnStart.addEventListener('click', () => {
     clearInterval(intervaloInicio);
-    heartsStartContainer.innerHTML = "";
     telaInicial.style.display = "none";
     gameContainer.style.display = "flex";
-
-    intervaloGame = setInterval(() => {
-      criarCoracaoParaContainer(document.body);
-    }, 400);
-
     mostrarOcasionPopUp();
+
+    // Inicia os corações na tela do jogo
+    intervaloJogo = setInterval(() => criarCoracaoParaContainer(heartsGameContainer), 400);
   });
 
+  // Funções de mudança de imagem
   window.mudarPele = img => document.getElementById("pele").src = img;
   window.mudarCabelo = img => document.getElementById("cabelo").src = img;
   window.mudarRoupa = img => document.getElementById("roupa").src = img;
@@ -357,31 +405,23 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("rostos").src = "";
   };
 
-  document.getElementById('btnPronto').onclick = () => {
-    alert("Pronto!");
-  };
-
   document.getElementById('btnVoltar').onclick = () => {
-    document.getElementById("game-container").style.display = "none";
-    document.getElementById("tela-inicial").style.display = "flex";
+    gameContainer.style.display = "none";
+    telaInicial.style.display = "flex";
 
-    // Reset personagem
-    document.getElementById("pele").src = "imagens/pele1.png";
-    document.getElementById("cabelo").src = "";
-    document.getElementById("roupa").src = "";
-    document.getElementById("rostos").src = "";
+    clearInterval(intervaloJogo);
+    heartsGameContainer.innerHTML = '';
+
+    // Reiniciar corações da tela inicial
+    intervaloInicio = setInterval(() => criarCoracaoParaContainer(heartsStartContainer), 400);
   };
 });
 
 const ocasioes = ["escola", "festa", "parque", "shopping"];
-
 function mostrarOcasionPopUp() {
-
   soltarConfetes();
-
   const tema = ocasioes[Math.floor(Math.random() * ocasioes.length)];
-
-  document.getElementById("tituloTema").textContent = "Vista-se para " + tema;
+  document.getElementById("tituloTema").textContent = "Vista-se para... " + tema + "!";
 
   const bg = document.createElement("div");
   bg.style.position = "fixed";
@@ -416,7 +456,6 @@ function mostrarOcasionPopUp() {
   botao.style.borderRadius = "12px";
   botao.style.cursor = "pointer";
   botao.style.fontSize = "20px";
-
   botao.onclick = () => bg.remove();
 
   box.appendChild(texto);
@@ -436,20 +475,18 @@ function soltarConfetes() {
     confete.style.fontSize = (20 + Math.random() * 20) + "px";
     confete.style.opacity = "0.9";
     confete.style.zIndex = "99999";
-
     const dur = 1500 + Math.random() * 500;
     confete.style.transition = `transform ${dur}ms linear`;
-
     document.body.appendChild(confete);
-
     setTimeout(() => {
       confete.style.transform = `translateY(${110}vh) rotate(${Math.random() * 360}deg)`;
     }, 30);
-
     setTimeout(() => confete.remove(), dur + 300);
   }
 }
 
+// Mostra erros no console
+window.addEventListener('error', e => console.error("Erro detectado:", e.message));
 </script>
 
 </body>
