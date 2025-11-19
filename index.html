@@ -280,117 +280,94 @@ h1 {
 }
 </style>
 </head>
-
 <body>
-
-<!-- =============== TELA INICIAL =============== -->
-<div id="tela-inicial" class="start-screen">
-  <div id="hearts-start"></div>
-  <h1 class="titulo-inicio">Jogo de Vestir</h1>
-  <p class="creditos">Desenvolvido por Ana Luiza Stábile</p>
-  <button id="btnStart" class="btn-start">Iniciar Jogo</button>
-</div>
-
-<!-- =============== JOGO =============== -->
-<div class="container" id="game-container" style="display:none;">
-
-  <div class="game-area">
-    <img id="pele" src="imagens/pele1.png">
-    <img id="rostos" src="">
-    <img id="cabelo" src="">
-    <img id="roupa" src="">
+  <!-- =============== TELA INICIAL =============== -->
+  <div id="tela-inicial" class="start-screen">
+    <div id="hearts-start"></div>
+    <h1 class="titulo-inicio">Jogo de Vestir</h1>
+    <p class="creditos">Desenvolvido por Ana Luiza Stábile</p>
+    <button id="btnStart" class="btn-start">Iniciar Jogo</button>
+    <button id="btnSobre" class="btn-start" style="margin-top: 15px; background: linear-gradient(135deg, #a78bfa, #8b5cf6);">Sobre</button>
   </div>
 
-  <div id="hearts-game"></div> <!-- container para corações no jogo -->
+  <!-- =============== JOGO =============== -->
+  <div class="container" id="game-container" style="display:none;">
+    <div class="game-area">
+      <img id="pele" src="imagens/pele1.png">
+      <img id="rostos" src="">
+      <img id="cabelo" src="">
+      <img id="roupa" src="">
+    </div>
 
-  <div class="side-buttons">
-    <button id="btnLimpar">Limpar</button>
-    <button id="btnPronto">Pronto</button>
-    <button id="btnVoltar">Voltar</button>
+    <div id="hearts-game"></div>
+
+    <div class="side-buttons">
+      <button id="btnLimpar">Limpar</button>
+      <button id="btnPronto">Pronto</button>
+      <button id="btnVoltar">Voltar</button>
+    </div>
+
+    <div class="menu">
+      <h1 id="tituloTema">Vista-se para ...</h1>
+      <!-- Pele -->
+      <div class="section">
+        <h2>Pele</h2>
+        <div class="buttons">
+          <button onclick="mudarPele('imagens/pele1.png')">Pele 1</button>
+          <button onclick="mudarPele('imagens/pele2.png')">Pele 2</button>
+          <button onclick="mudarPele('imagens/pele3.png')">Pele 3</button>
+          <button onclick="mudarPele('imagens/pele4.png')">Pele 4</button>
+        </div>
+      </div>
+      <!-- Cabelo -->
+      <div class="section">
+        <h2>Cabelos</h2>
+        <div class="buttons">
+          <button onclick="mudarCabelo('imagens/cabeloPreto.png')">Preto</button>
+          <button onclick="mudarCabelo('imagens/cabeloRuivo.png')">Ruivo</button>
+          <button onclick="mudarCabelo('imagens/cabeloLoiro.png')">Loiro</button>
+          <button onclick="mudarCabelo('imagens/cabeloRosa.png')">Rosa</button>
+          <button onclick="mudarCabelo('imagens/cabeloCacheado.png')">Cacheado</button>
+          <button onclick="mudarCabelo('imagens/cabeloCastanho.png')">Castanho</button>
+        </div>
+      </div>
+      <!-- Roupa -->
+      <div class="section">
+        <h2>Roupas</h2>
+        <div class="buttons">
+          <button onclick="mudarRoupa('imagens/vestido.png')">Vestido Rosa</button>
+          <button onclick="mudarRoupa('imagens/uniforme.png')">Uniforme</button>
+          <button onclick="mudarRoupa('imagens/macaquinho.png')">Jardineira</button>
+          <button onclick="mudarRoupa('imagens/vestidoAzul.png')">Vestido Azul</button>
+          <button onclick="mudarRoupa('imagens/roupaVermelha.png')">Vermelha</button>
+          <button onclick="mudarRoupa('imagens/roupaAmarela.png')">Amarela</button>
+        </div>
+      </div>
+      <!-- Rostos -->
+      <div class="section">
+        <h2>Rostos</h2>
+        <div class="buttons">
+          <button onclick="mudarRostos('imagens/olhoAzul.png')">Olhos Azuis</button>
+          <button onclick="mudarRostos('imagens/olhoVerde.png')">Olhos Verdes</button>
+          <button onclick="mudarRostos('imagens/olhoPreto.png')">Olhos Pretos</button>
+          <button onclick="mudarRostos('imagens/olhoRosa.png')">Olhos Rosa</button>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="menu">
-    <h1 id="tituloTema">Vista-se para ...</h1>
-
-    <div class="section">
-      <h2>Pele</h2>
-      <div class="buttons">
-        <button onclick="mudarPele('imagens/pele1.png')">Pele 1</button>
-        <button onclick="mudarPele('imagens/pele2.png')">Pele 2</button>
-        <button onclick="mudarPele('imagens/pele3.png')">Pele 3</button>
-        <button onclick="mudarPele('imagens/pele4.png')">Pele 4</button>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Cabelos</h2>
-      <div class="buttons">
-        <button onclick="mudarCabelo('imagens/cabeloPreto.png')">Preto</button>
-        <button onclick="mudarCabelo('imagens/cabeloRuivo.png')">Ruivo</button>
-        <button onclick="mudarCabelo('imagens/cabeloLoiro.png')">Loiro</button>
-        <button onclick="mudarCabelo('imagens/cabeloRosa.png')">Rosa</button>
-        <button onclick="mudarCabelo('imagens/cabeloCacheado.png')">Cacheado</button>
-        <button onclick="mudarCabelo('imagens/cabeloCastanho.png')">Castanho</button>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Roupas</h2>
-      <div class="buttons">
-        <button onclick="mudarRoupa('imagens/vestido.png')">Vestido Rosa</button>
-        <button onclick="mudarRoupa('imagens/uniforme.png')">Uniforme</button>
-        <button onclick="mudarRoupa('imagens/macaquinho.png')">Jardineira</button>
-        <button onclick="mudarRoupa('imagens/vestidoAzul.png')">Vestido Azul</button>
-        <button onclick="mudarRoupa('imagens/roupaVermelha.png')">Vermelha</button>
-        <button onclick="mudarRoupa('imagens/roupaAmarela.png')">Amarela</button>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Rostos</h2>
-      <div class="buttons">
-        <button onclick="mudarRostos('imagens/olhoAzul.png')">Olhos Azuis</button>
-        <button onclick="mudarRostos('imagens/olhoVerde.png')">Olhos Verdes</button>
-        <button onclick="mudarRostos('imagens/olhoPreto.png')">Olhos Pretos</button>
-        <button onclick="mudarRostos('imagens/olhoRosa.png')">Olhos Rosa</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script>
-function criarCoracaoParaContainer(container) {
-  const heart = document.createElement('div');
-  heart.classList.add('heart');
-  heart.textContent = '♡';
-  heart.style.left = Math.random() * 100 + 'vw';
-  heart.style.fontSize = (10 + Math.random() * 24) + 'px';
-  heart.style.animationDuration = (4 + Math.random() * 5) + 's';
-  container.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}
-
-let intervaloInicio = null;
-let intervaloJogo = null;
-
 document.addEventListener('DOMContentLoaded', () => {
+
   const btnStart = document.getElementById('btnStart');
+  const btnSobre = document.getElementById('btnSobre');
   const telaInicial = document.getElementById('tela-inicial');
   const gameContainer = document.getElementById('game-container');
   const heartsStartContainer = document.getElementById('hearts-start');
   const heartsGameContainer = document.getElementById('hearts-game');
 
-  intervaloInicio = setInterval(() => criarCoracaoParaContainer(heartsStartContainer), 400);
-
-  btnStart.addEventListener('click', () => {
-    clearInterval(intervaloInicio);
-    telaInicial.style.display = "none";
-    gameContainer.style.display = "flex";
-    mostrarOcasionPopUp();
-
-    // Inicia os corações na tela do jogo
-    intervaloJogo = setInterval(() => criarCoracaoParaContainer(heartsGameContainer), 400);
-  });
+  let intervaloInicio = setInterval(() => criarCoracaoParaContainer(heartsStartContainer), 400);
+  let intervaloJogo = null;
 
   // Funções de mudança de imagem
   window.mudarPele = img => document.getElementById("pele").src = img;
@@ -398,96 +375,156 @@ document.addEventListener('DOMContentLoaded', () => {
   window.mudarRoupa = img => document.getElementById("roupa").src = img;
   window.mudarRostos = img => document.getElementById("rostos").src = img;
 
-  document.getElementById('btnLimpar').onclick = () => {
-    document.getElementById("pele").src = "imagens/pele1.png";
-    document.getElementById("cabelo").src = "";
-    document.getElementById("roupa").src = "";
-    document.getElementById("rostos").src = "";
-  };
+  // ================== BOTÃO INICIAR ==================
+  btnStart.addEventListener('click', () => {
+    clearInterval(intervaloInicio);
+    telaInicial.style.display = "none";
+    gameContainer.style.display = "flex";
+    mostrarOcasionPopUp();
 
+    intervaloJogo = setInterval(() => criarCoracaoParaContainer(heartsGameContainer), 400);
+  });
+
+  // ================== BOTÃO SOBRE ==================
+  btnSobre.addEventListener('click', () => {
+    const bg = document.createElement('div');
+    bg.style.position = 'fixed';
+    bg.style.top = 0;
+    bg.style.left = 0;
+    bg.style.width = '100vw';
+    bg.style.height = '100vh';
+    bg.style.background = 'rgba(0,0,0,0.5)';
+    bg.style.display = 'flex';
+    bg.style.alignItems = 'center';
+    bg.style.justifyContent = 'center';
+    bg.style.zIndex = 10000;
+
+    const box = document.createElement('div');
+    box.style.background = 'white';
+    box.style.padding = '25px 35px';
+    box.style.borderRadius = '15px';
+    box.style.textAlign = 'center';
+    box.style.fontSize = '18px';
+    box.style.maxWidth = '400px';
+
+    const texto = document.createElement('p');
+    texto.innerText = "'Jogo de Vestir' é um jogo de moda desenvolvido e ilustrado por Ana Luiza Stábile, aluna do 2º ano do Ensino Médio. O jogo busca, de forma divertida e criativa, sortear uma ocasião aleatória em que o jogador explore todo o seu senso de estilo!";
+    texto.style.marginBottom = '20px';
+
+    const botao = document.createElement('button');
+    botao.innerText = 'Fechar';
+    botao.style.padding = '10px 20px';
+    botao.style.background = 'linear-gradient(135deg, #a78bfa, #8b5cf6)';
+    botao.style.color = 'white';
+    botao.style.border = 'none';
+    botao.style.borderRadius = '10px';
+    botao.style.cursor = 'pointer';
+    botao.onclick = () => bg.remove();
+
+    box.appendChild(texto);
+    box.appendChild(botao);
+    bg.appendChild(box);
+    document.body.appendChild(bg);
+  });
+
+  // ================== BOTÕES DO JOGO ==================
+  document.getElementById('btnLimpar').onclick = () => {
+    mudarPele('imagens/pele1.png');
+    mudarCabelo('');
+    mudarRoupa('');
+    mudarRostos('');
+  };
   document.getElementById('btnVoltar').onclick = () => {
     gameContainer.style.display = "none";
     telaInicial.style.display = "flex";
-
     clearInterval(intervaloJogo);
     heartsGameContainer.innerHTML = '';
-
-    // Reiniciar corações da tela inicial
     intervaloInicio = setInterval(() => criarCoracaoParaContainer(heartsStartContainer), 400);
   };
-});
 
-const ocasioes = ["escola", "festa", "parque", "shopping"];
-function mostrarOcasionPopUp() {
-  soltarConfetes();
-  const tema = ocasioes[Math.floor(Math.random() * ocasioes.length)];
-  document.getElementById("tituloTema").textContent = "Vista-se para... " + tema + "!";
-
-  const bg = document.createElement("div");
-  bg.style.position = "fixed";
-  bg.style.top = 0;
-  bg.style.left = 0;
-  bg.style.width = "100vw";
-  bg.style.height = "100vh";
-  bg.style.background = "rgba(0,0,0,0.5)";
-  bg.style.display = "flex";
-  bg.style.alignItems = "center";
-  bg.style.justifyContent = "center";
-  bg.style.zIndex = "9999";
-
-  const box = document.createElement("div");
-  box.style.background = "white";
-  box.style.padding = "25px 35px";
-  box.style.borderRadius = "15px";
-  box.style.textAlign = "center";
-  box.style.fontSize = "20px";
-
-  const texto = document.createElement("p");
-  texto.innerText = "Ocasião sorteada:\n" + tema;
-  texto.style.marginBottom = "20px";
-  texto.style.fontWeight = "bold";
-
-  const botao = document.createElement("button");
-  botao.innerText = "OK";
-  botao.style.padding = "12px 26px";
-  botao.style.background = "linear-gradient(135deg, #a78bfa, #8b5cf6)";
-  botao.style.color = "white";
-  botao.style.border = "none";
-  botao.style.borderRadius = "12px";
-  botao.style.cursor = "pointer";
-  botao.style.fontSize = "20px";
-  botao.onclick = () => bg.remove();
-
-  box.appendChild(texto);
-  box.appendChild(botao);
-  bg.appendChild(box);
-  document.body.appendChild(bg);
-}
-
-function soltarConfetes() {
-  const total = 40;
-  for (let i = 0; i < total; i++) {
-    const confete = document.createElement("div");
-    confete.innerHTML = "⭐";
-    confete.style.position = "fixed";
-    confete.style.top = "-20px";
-    confete.style.left = Math.random() * 100 + "vw";
-    confete.style.fontSize = (20 + Math.random() * 20) + "px";
-    confete.style.opacity = "0.9";
-    confete.style.zIndex = "99999";
-    const dur = 1500 + Math.random() * 500;
-    confete.style.transition = `transform ${dur}ms linear`;
-    document.body.appendChild(confete);
-    setTimeout(() => {
-      confete.style.transform = `translateY(${110}vh) rotate(${Math.random() * 360}deg)`;
-    }, 30);
-    setTimeout(() => confete.remove(), dur + 300);
+  // ================== FUNÇÕES DE CORAÇÕES ==================
+  function criarCoracaoParaContainer(container) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.textContent = '♡';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (10 + Math.random() * 24) + 'px';
+    heart.style.animationDuration = (4 + Math.random() * 5) + 's';
+    container.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
   }
-}
 
-// Mostra erros no console
-window.addEventListener('error', e => console.error("Erro detectado:", e.message));
+  // ================== FUNÇÃO POPUP OCASIÃO ==================
+  const ocasioes = ["encontro romântico","jantar elegante","piquenique","escola","acampamento","festa à fantasia", "parque", "shopping"];
+  function mostrarOcasionPopUp() {
+    soltarConfetes();
+    const tema = ocasioes[Math.floor(Math.random() * ocasioes.length)];
+    document.getElementById("tituloTema").textContent = "Vista-se para... " + tema + "!";
+    const bg = document.createElement("div");
+    bg.style.position = "fixed";
+    bg.style.top = 0;
+    bg.style.left = 0;
+    bg.style.width = "100vw";
+    bg.style.height = "100vh";
+    bg.style.background = "rgba(0,0,0,0.5)";
+    bg.style.display = "flex";
+    bg.style.alignItems = "center";
+    bg.style.justifyContent = "center";
+    bg.style.zIndex = "9999";
+
+    const box = document.createElement("div");
+    box.style.background = "white";
+    box.style.padding = "25px 35px";
+    box.style.borderRadius = "15px";
+    box.style.textAlign = "center";
+    box.style.fontSize = "20px";
+
+    const texto = document.createElement("p");
+    texto.innerText = "Ocasião sorteada: " + tema;
+    texto.style.marginBottom = "20px";
+    texto.style.fontWeight = "bold";
+
+    const botao = document.createElement("button");
+    botao.innerText = "OK";
+    botao.style.padding = "12px 26px";
+    botao.style.background = "linear-gradient(135deg, #a78bfa, #8b5cf6)";
+    botao.style.color = "white";
+    botao.style.border = "none";
+    botao.style.borderRadius = "12px";
+    botao.style.cursor = "pointer";
+    botao.style.fontSize = "20px";
+    botao.onclick = () => bg.remove();
+
+    box.appendChild(texto);
+    box.appendChild(botao);
+    bg.appendChild(box);
+    document.body.appendChild(bg);
+  }
+
+  // ================== CONFETES ==================
+  function soltarConfetes() {
+    const total = 40;
+    for (let i = 0; i < total; i++) {
+      const confete = document.createElement("div");
+      confete.innerHTML = "⭐";
+      confete.style.position = "fixed";
+      confete.style.top = "-20px";
+      confete.style.left = Math.random() * 100 + "vw";
+      confete.style.fontSize = (20 + Math.random() * 20) + "px";
+      confete.style.opacity = "0.9";
+      confete.style.zIndex = "99999";
+      const dur = 1500 + Math.random() * 500;
+      confete.style.transition = `transform ${dur}ms linear`;
+      document.body.appendChild(confete);
+      setTimeout(() => {
+        confete.style.transform = `translateY(${110}vh) rotate(${Math.random() * 360}deg)`;
+      }, 30);
+      setTimeout(() => confete.remove(), dur + 300);
+    }
+  }
+
+});
 </script>
-
 </body>
+
 </html>
