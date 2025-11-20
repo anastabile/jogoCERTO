@@ -91,28 +91,27 @@ body {
 
 .container {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 60px;
   max-width: 1400px;
   width: 100%;
   height: 90vh;
+  padding: 0 20px;
   box-sizing: border-box;
-  position: relative; /* Para posicionar corações absolutos aqui */
+  position: relative;
 }
 
-/* PERSONAGEM MAIOR E CENTRALIZADA */
+/* PERSONAGEM */
 .game-area {
   position: relative;
-  width: 600px;
-  height: 850px;
+  width: 530px;
+  height: 800px;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
 }
 
-/* Centralização e camadas */
 .game-area img {
   position: absolute;
   top: 50%;
@@ -123,13 +122,12 @@ body {
   object-fit: contain;
 }
 
-/* Ordem de camadas do personagem */
 #pele { z-index: 1; }
 #rostos { z-index: 2; }
 #cabelo { z-index: 3; }
 #roupa { z-index: 4; }
 
-/* MENU MAIS BAIXO E LARGO */
+/* MENU LATERAL */
 .menu {
   display: flex;
   flex-direction: column;
@@ -138,11 +136,10 @@ body {
   border-radius: 20px;
   padding: 20px 40px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  width: 650px;          
-  height: 700px;         
+  width: 500px;
+  height: 90vh;
   overflow-y: auto;
   box-sizing: border-box;
-  z-index: 15;
 }
 
 .menu::-webkit-scrollbar {
@@ -152,66 +149,51 @@ body {
   background: #b48ef7;
   border-radius: 8px;
 }
-.menu::-webkit-scrollbar-track {
-  background: transparent;
-}
 
+/* TITULOS */
 h1 {
   font-family: 'Clicker Script', cursive;
   text-align: center;
   margin-bottom: 5px;
   font-size: 2.8rem;
-  color: #7c3a8d;
-}
-
-.section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  text-align: center;
+  color: #9d11fa;
 }
 
 .section h2 {
   font-family: 'Clicker Script', cursive;
   font-size: 1.8rem;
+  text-align: center;
   color: #444;
-  margin-bottom: 4px;
 }
 
-/* BOTÕES AGRUPADOS DE FORMA BONITA */
+/* BOTÕES */
 .buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
-  width: 100%;
 }
 
 .buttons button {
   flex: 1 1 45%;
   max-width: 45%;
   padding: 10px 0;
-  border: none;
   background: linear-gradient(135deg, #a78bfa, #8b5cf6);
   color: white;
-  font-weight: bold;
-  cursor: pointer;
+  border: none;
   border-radius: 10px;
-  transition: all 0.3s;
-  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  cursor: pointer;
   font-size: 13px;
+  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
 }
 
 .buttons button:hover {
-  background: linear-gradient(135deg, #8b5cf6, #c4b5fd);
   transform: scale(1.05);
+  background: linear-gradient(135deg, #8b5cf6, #c4b5fd);
 }
 
 /* BOTÕES LATERAIS */
 .side-buttons {
-  padding: 10px 18px;
   position: fixed;
   left: 25px;
   top: 50%;
@@ -225,32 +207,24 @@ h1 {
 .side-buttons button {
   padding: 10px 18px;
   background: linear-gradient(135deg, #a78bfa, #8b5cf6);
-  border: none;
   border-radius: 10px;
   color: white;
-  font-size: 20px;
+  border: none;
   cursor: pointer;
+  font-size: 20px;
   box-shadow: 0 4px 10px rgba(139, 92, 246, 0.4);
-  transition: 0.25s;
 }
 
-.side-buttons button:hover {
-  transform: scale(1.07);
-}
-
-/* ======================== */
-/* CORAÇÕES ANIMADOS */
-/* ======================== */
+/* ========================= */
+/* CORAÇÕES */
+/* ========================= */
 .heart {
-  position: absolute; /* para corações da tela inicial */
+  position: absolute;
   bottom: -20px;
   color: #d448ff;
   font-size: 20px;
   animation: subir 8s linear infinite;
   opacity: 0.8;
-  z-index: 1;
-  pointer-events: none;
-  user-select: none;
 }
 
 @keyframes subir {
@@ -258,28 +232,64 @@ h1 {
   100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
 }
 
-/* Container corações na tela do jogo */
-#hearts-game {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: visible;
-  z-index: 1; /* atrás */
+/* ========================= */
+/* RESPONSIVIDADE */
+/* ========================= */
 
+/* ----- Até 1300px ----- */
+@media (max-width: 1300px) {
+  .container {
+    gap: 20px;
+  }
+  .game-area {
+    width: 480px;
+    height: 700px;
+  }
+  .menu {
+    width: 420px;
+  }
 }
 
-#hearts-game .heart {
-  position: absolute;
-  bottom: -20px;
-  color: #d448ff;
-  font-size: 20px;
-  animation: subir 8s linear infinite;
-  opacity: 0.8;
-  pointer-events: none;
-  user-select: none;
+/* ----- Até 1150px ----- */
+@media (max-width: 1150px) {
+  body {
+    overflow-y: auto;
+  }
+  .container {
+    flex-direction: column;
+    height: auto;
+    padding-bottom: 40px;
+  }
+  .side-buttons {
+    top: 20px;
+    left: 20px;
+    transform: none;
+    flex-direction: row;
+  }
+  .game-area {
+    width: 400px;
+    height: 600px;
+  }
+  .menu {
+    width: 90%;
+    height: auto;
+  }
+}
+
+/* ----- Até 850px (tablet em pé) ----- */
+@media (max-width: 850px) {
+  .game-area {
+    width: 320px;
+    height: 500px;
+  }
+  .buttons button {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 }
 </style>
 </head>
+
 <body>
   <!-- =============== TELA INICIAL =============== -->
   <div id="tela-inicial" class="start-screen">
@@ -287,27 +297,28 @@ h1 {
     <h1 class="titulo-inicio">Jogo de Vestir</h1>
     <p class="creditos">Desenvolvido por Ana Luiza Stábile</p>
     <button id="btnStart" class="btn-start">Iniciar Jogo</button>
-    <button id="btnSobre" class="btn-start" style="margin-top: 15px; background: linear-gradient(135deg, #a78bfa, #8b5cf6);">Sobre</button>
+    <button id="btnSobre" class="btn-start" style="margin-top: 15px;">Sobre</button>
   </div>
 
   <!-- =============== JOGO =============== -->
   <div class="container" id="game-container" style="display:none;">
-    <div class="game-area">
+    <div class="game-area" aria-hidden="false">
+      <!-- Imagens em camadas (deixe os src vazios caso queira carregar dinamicamente) -->
       <img id="pele" src="imagens/pele1.png">
-      <img id="rostos" src="">
+      <img id="rostos" src="" >
       <img id="cabelo" src="">
-      <img id="roupa" src="">
+      <img id="roupa" src="" >
     </div>
 
-    <div id="hearts-game"></div>
+    <div id="hearts-game" aria-hidden="true"></div>
 
-    <div class="side-buttons">
+    <div class="side-buttons" aria-hidden="false">
       <button id="btnLimpar">Limpar</button>
       <button id="btnPronto">Pronto</button>
       <button id="btnVoltar">Voltar</button>
     </div>
 
-    <div class="menu">
+    <div class="menu" role="region" aria-label="Menu de opções">
       <h1 id="tituloTema">Vista-se para ...</h1>
       <!-- Pele -->
       <div class="section">
@@ -369,21 +380,36 @@ document.addEventListener('DOMContentLoaded', () => {
   let intervaloInicio = setInterval(() => criarCoracaoParaContainer(heartsStartContainer), 400);
   let intervaloJogo = null;
 
-  // Funções de mudança de imagem
+  // Funções de mudança de imagem (exportadas pra ficar igual ao seu original)
   window.mudarPele = img => document.getElementById("pele").src = img;
   window.mudarCabelo = img => document.getElementById("cabelo").src = img;
   window.mudarRoupa = img => document.getElementById("roupa").src = img;
   window.mudarRostos = img => document.getElementById("rostos").src = img;
 
-  // ================== BOTÃO INICIAR ==================
-  btnStart.addEventListener('click', () => {
-    clearInterval(intervaloInicio);
-    telaInicial.style.display = "none";
-    gameContainer.style.display = "flex";
-    mostrarOcasionPopUp();
-
-    intervaloJogo = setInterval(() => criarCoracaoParaContainer(heartsGameContainer), 400);
+  // Adiciona efeito neon aos botões (mantive o seu script original)
+  const botoes = document.querySelectorAll('.buttons button');
+  botoes.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.add('neon-click');
+      setTimeout(() => btn.classList.remove('neon-click'), 600);
+    });
   });
+
+  // ================== BOTÃO INICIAR ==================
+ btnStart.addEventListener('click', () => {
+  // Resetar personagens sempre que o jogo iniciar
+  mudarPele('imagens/pele1.png');
+  mudarCabelo('');
+  mudarRoupa('');
+  mudarRostos('');
+
+  clearInterval(intervaloInicio);
+  telaInicial.style.display = "none";
+  gameContainer.style.display = "flex";
+  mostrarOcasionPopUp();
+
+  intervaloJogo = setInterval(() => criarCoracaoParaContainer(heartsGameContainer), 400);
+});
 
   // ================== BOTÃO SOBRE ==================
   btnSobre.addEventListener('click', () => {
@@ -401,15 +427,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const box = document.createElement('div');
     box.style.background = 'white';
-    box.style.padding = '25px 35px';
-    box.style.borderRadius = '15px';
+    box.style.padding = '18px 22px';
+    box.style.borderRadius = '12px';
     box.style.textAlign = 'center';
-    box.style.fontSize = '18px';
+    box.style.fontSize = '15px';
     box.style.maxWidth = '400px';
 
     const texto = document.createElement('p');
     texto.innerText = "'Jogo de Vestir' é um jogo de moda desenvolvido e ilustrado por Ana Luiza Stábile, aluna do 2º ano do Ensino Médio. O jogo busca, de forma divertida e criativa, sortear uma ocasião aleatória em que o jogador explore todo o seu senso de estilo!";
-    texto.style.marginBottom = '20px';
+    texto.style.marginBottom = '16px';
 
     const botao = document.createElement('button');
     botao.innerText = 'Fechar';
@@ -441,13 +467,26 @@ document.addEventListener('DOMContentLoaded', () => {
     heartsGameContainer.innerHTML = '';
     intervaloInicio = setInterval(() => criarCoracaoParaContainer(heartsStartContainer), 400);
   };
+document.getElementById("btnPronto").addEventListener("click", () => {
+
+  // Salvar imagens atuais no localStorage
+  localStorage.setItem("peleSelecionada", document.getElementById("pele").src);
+  localStorage.setItem("cabeloSelecionado", document.getElementById("cabelo").src);
+  localStorage.setItem("roupaSelecionada", document.getElementById("roupa").src);
+  localStorage.setItem("rostosSelecionados", document.getElementById("rostos").src);
+
+  // Ir para a segunda tela
+  window.location.href = "final.html";
+});
 
   // ================== FUNÇÕES DE CORAÇÕES ==================
   function criarCoracaoParaContainer(container) {
     const heart = document.createElement('div');
     heart.classList.add('heart');
     heart.textContent = '♡';
-    heart.style.left = Math.random() * 100 + 'vw';
+    // coloca dentro do container levando em conta sua largura (não usar vw direto quando estiver dentro do container)
+    const leftPerc = Math.random() * 90; // evita sair muito das laterais
+    heart.style.left = leftPerc + '%';
     heart.style.fontSize = (10 + Math.random() * 24) + 'px';
     heart.style.animationDuration = (4 + Math.random() * 5) + 's';
     container.appendChild(heart);
@@ -455,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ================== FUNÇÃO POPUP OCASIÃO ==================
-  const ocasioes = ["encontro romântico","jantar elegante","piquenique","escola","acampamento","festa à fantasia", "parque", "shopping"];
+  const ocasioes = ["encontro romântico","jantar elegante","piquenique","escola","acampamento","circo", "parque", "shopping"];
   function mostrarOcasionPopUp() {
     soltarConfetes();
     const tema = ocasioes[Math.floor(Math.random() * ocasioes.length)];
@@ -474,25 +513,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const box = document.createElement("div");
     box.style.background = "white";
-    box.style.padding = "25px 35px";
-    box.style.borderRadius = "15px";
+    box.style.padding = "20px 26px";
+    box.style.borderRadius = "12px";
     box.style.textAlign = "center";
-    box.style.fontSize = "20px";
+    box.style.fontSize = "18px";
 
     const texto = document.createElement("p");
     texto.innerText = "Ocasião sorteada: " + tema;
-    texto.style.marginBottom = "20px";
+    texto.style.marginBottom = "14px";
     texto.style.fontWeight = "bold";
 
     const botao = document.createElement("button");
     botao.innerText = "OK";
-    botao.style.padding = "12px 26px";
-    botao.style.background = "linear-gradient(135deg, #a78bfa, #8b5cf6)";
+    botao.style.padding = "10px 18px";
+    botao.style.background = 'linear-gradient(135deg, #a78bfa, #8b5cf6)';
     botao.style.color = "white";
     botao.style.border = "none";
     botao.style.borderRadius = "12px";
     botao.style.cursor = "pointer";
-    botao.style.fontSize = "20px";
+    botao.style.fontSize = "16px";
     botao.onclick = () => bg.remove();
 
     box.appendChild(texto);
@@ -502,29 +541,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ================== CONFETES ==================
-  function soltarConfetes() {
-    const total = 40;
-    for (let i = 0; i < total; i++) {
-      const confete = document.createElement("div");
-      confete.innerHTML = "⭐";
-      confete.style.position = "fixed";
-      confete.style.top = "-20px";
-      confete.style.left = Math.random() * 100 + "vw";
-      confete.style.fontSize = (20 + Math.random() * 20) + "px";
-      confete.style.opacity = "0.9";
-      confete.style.zIndex = "99999";
-      const dur = 1500 + Math.random() * 500;
-      confete.style.transition = `transform ${dur}ms linear`;
-      document.body.appendChild(confete);
-      setTimeout(() => {
-        confete.style.transform = `translateY(${110}vh) rotate(${Math.random() * 360}deg)`;
-      }, 30);
-      setTimeout(() => confete.remove(), dur + 300);
-    }
-  }
+ function soltarConfetes() {
+  const total = 40;
+  for (let i = 0; i < total; i++) {
+    const confete = document.createElement("div");
+    confete.innerHTML = "★";                // símbolo novo
+    confete.style.color = "#FFD700";        // amarelo ouro
 
+    confete.style.position = "fixed";
+    confete.style.top = "-20px";
+    confete.style.left = Math.random() * 100 + "vw";
+    confete.style.fontSize = (20 + Math.random() * 20) + "px";
+    confete.style.opacity = "0.9";
+    confete.style.zIndex = "99999";
+
+    const dur = 1500 + Math.random() * 500;
+    confete.style.transition = `transform ${dur}ms linear`;
+
+    document.body.appendChild(confete);
+
+    setTimeout(() => {
+      confete.style.transform = `translateY(${110}vh) rotate(${Math.random() * 360}deg)`;
+    }, 30);
+
+    setTimeout(() => confete.remove(), dur + 300);
+  }
+}
 });
 </script>
 </body>
-
 </html>
