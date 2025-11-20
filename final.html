@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap" rel="stylesheet">
+<title>Personagem Final</title>
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        background: #f7d7ff;
+    }
+
+    /* Container principal ocupa toda a tela */
+    #personagem-final-container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    /* Cenário */
+    #cenario-fundo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+    }
+
+    /* Camadas do personagem */
+    #final-pele,
+    #final-rostos,
+    #final-cabelo,
+    #final-roupa {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        height: 80%;
+        object-fit: contain;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    /* Título flutuando sobre o cenário */
+    #titulo {
+        font-family: "Clicker Script", cursive;
+        font-weight: bold;
+        position: absolute;
+        top: 20px;
+        width: 100%;
+        text-align: center;
+        font-size: 50px;
+        color: white;
+        text-shadow: 2px 2px 4px #271d2c;
+        z-index: 2;
+    }
+
+    /* Botão Voltar */
+    button.voltar {
+        font-family: Arial, Helvetica, sans-serif;
+        position: absolute;
+        top: 90px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 12px 20px;
+        background: linear-gradient(135deg, #b66ef8a4, #ede6ffb4);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight:500;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    /* Botões de trocar cenário nas laterais */
+    #prev-cenario,
+    #next-cenario {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 12px 20px;
+        background:linear-gradient(135deg, #f7f4ffb9, #f1ebffc9);
+        color: white;
+        border: none;
+        border-radius: 100000px;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 3;
+        transition: background 0.3s ease;
+    }
+
+    #prev-cenario { left: 10px; }
+    #next-cenario { right: 10px; }
+
+    #prev-cenario:hover,
+    #next-cenario:hover { background: rgba(204, 143, 255, 0.514); }
+
+</style>
+</head>
+<body>
+
+<div id="personagem-final-container">
+    <!-- Cenário -->
+    <img id="cenario-fundo" src="imagens/cenario1.jpg">
+
+    <!-- Título -->
+    <div id="titulo">Obrigada por Jogar!</div>
+
+    <!-- Camadas do personagem -->
+    <img id="final-pele">
+    <img id="final-rostos">
+    <img id="final-cabelo">
+    <img id="final-roupa">
+    <!-- Botão Voltar -->
+    <button class="voltar" onclick="window.location.href='index.html'">Voltar ao início</button>
+
+    <!-- Botões de trocar cenário -->
+    <button id="prev-cenario">⬅</button>
+    <button id="next-cenario">➡</button>
+</div>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+    // Pegar imagens salvas
+    const pele = localStorage.getItem("peleSelecionada");
+    const rostos = localStorage.getItem("rostosSelecionados");
+    const cabelo = localStorage.getItem("cabeloSelecionado");
+    const roupa = localStorage.getItem("roupaSelecionada");
+
+    document.getElementById("final-pele").src = pele;
+    document.getElementById("final-rostos").src = rostos;
+    document.getElementById("final-cabelo").src = cabelo;
+    document.getElementById("final-roupa").src = roupa;
+
+    // Cenários
+    const cenarios = [
+        "imagens/cenario1.jpg",
+        "imagens/cenario2.jpg",
+        "imagens/cenario3.jpg",
+        "imagens/cenario4.jpg",
+        "imagens/cenario5.jpg",
+        "imagens/cenario6.jpg",
+        "imagens/cenario7.jpg",
+        "imagens/cenario8.jpg",
+        "imagens/cenario9.jpg",
+    ];
+
+    let cenarioIndex = 0;
+    const cenarioImg = document.getElementById("cenario-fundo");
+    cenarioImg.src = cenarios[cenarioIndex];
+
+    document.getElementById("next-cenario").addEventListener("click", () => {
+        cenarioIndex = (cenarioIndex + 1) % cenarios.length;
+        cenarioImg.src = cenarios[cenarioIndex];
+    });
+
+    document.getElementById("prev-cenario").addEventListener("click", () => {
+        cenarioIndex = (cenarioIndex - 1 + cenarios.length) % cenarios.length;
+        cenarioImg.src = cenarios[cenarioIndex];
+    });
+});
+</script>
+
+</body>
+</html>
