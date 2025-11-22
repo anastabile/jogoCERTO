@@ -59,7 +59,7 @@
         text-align: center;
         font-size: 50px;
         color: white;
-        text-shadow: 2px 2px 4px #271d2c;
+        text-shadow: 2px 2px 4px #c37de6;
         z-index: 2;
     }
 
@@ -71,7 +71,7 @@
         left: 50%;
         transform: translateX(-50%);
         padding: 12px 20px;
-        background: linear-gradient(135deg, #b66ef8a4, #ede6ffb4);
+        background: linear-gradient(135deg, #ebdff7d7, #aa8bfab4);
         color: white;
         border: none;
         border-radius: 12px;
@@ -103,6 +103,7 @@
 
     #prev-cenario:hover,
     #next-cenario:hover { background: rgba(204, 143, 255, 0.514); }
+
 
 </style>
 </head>
@@ -141,17 +142,17 @@ window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("final-cabelo").src = cabelo;
     document.getElementById("final-roupa").src = roupa;
 
-    // Cenários
+    // Cenários (AGORA ACEITANDO GIF)
     const cenarios = [
-        "imagens/cenario1.jpg",
-        "imagens/cenario2.jpg",
-        "imagens/cenario3.jpg",
-        "imagens/cenario4.jpg",
-        "imagens/cenario5.jpg",
-        "imagens/cenario6.jpg",
-        "imagens/cenario7.jpg",
-        "imagens/cenario8.jpg",
-        "imagens/cenario9.jpg",
+        "imagens/cenario1.gif",
+        "imagens/cenario2.gif",
+        "imagens/cenario3.gif",
+        "imagens/cenario4.gif",
+        "imagens/cenario5.gif",
+        "imagens/cenario6.gif",
+        "imagens/cenario7.gif",
+        "imagens/cenario8.gif",
+        "imagens/cenario9.gif",
     ];
 
     let cenarioIndex = 0;
@@ -169,6 +170,5 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
-
 </body>
 </html>
