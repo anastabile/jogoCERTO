@@ -33,6 +33,12 @@
         object-fit: cover;
         z-index: 0;
     }
+    
+    @keyframes pulsarSimples {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
 
     /* Camadas do personagem */
     #final-pele,
@@ -57,28 +63,27 @@
         top: 20px;
         width: 100%;
         text-align: center;
-        font-size: 50px;
+        font-size: 55px;
         color: white;
-        text-shadow: 2px 2px 4px #c37de6;
         z-index: 2;
+        animation: pulsarSimples 2s ease-in-out infinite;
     }
 
     /* Botão Voltar */
     button.voltar {
-        font-family: Arial, Helvetica, sans-serif;
         position: absolute;
-        top: 90px;
+        top: 100px;
         left: 50%;
         transform: translateX(-50%);
         padding: 12px 20px;
-        background: linear-gradient(135deg, #ebdff7d7, #aa8bfab4);
+        max-width: 45%;
+        background: linear-gradient(135deg, #a78bfa, #8b5cf6);
         color: white;
         border: none;
-        border-radius: 12px;
-        font-size: 15px;
-        font-weight:500;
+        border-radius: 10px;
         cursor: pointer;
-        z-index: 2;
+        font-size: 15px;
+        box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
     }
 
     /* Botões de trocar cenário nas laterais */
@@ -102,7 +107,7 @@
     #next-cenario { right: 10px; }
 
     #prev-cenario:hover,
-    #next-cenario:hover { background: rgba(204, 143, 255, 0.514); }
+    #next-cenario:hover { background: rgba(160, 147, 170, 0.51); }
 
 
 </style>
