@@ -53,7 +53,7 @@
   left: -420px;   /* distância da esquerda da tela, ajuste */
   top: 50%;     /* altura central da tela */
   transform: translateY(-150%); /* mantém verticalmente central */
-  width: 150px;
+  width: 170px;
   height: auto;
   z-index: 2;
   animation: pulsarFix 2s ease-in-out infinite;
@@ -315,7 +315,7 @@ h1 {
 <body>
   <!-- =============== TELA INICIAL =============== -->
   <div id="tela-inicial" class="start-screen">
-       <h1 class="titulo-inicio">Jogo de Vestir</h1>
+       <h1 class="titulo-inicio">Comfy Style</h1>
     <div id="hearts-start"></div>
 
     <!-- IMAGEM + TÍTULO JUNTOS -->
@@ -324,7 +324,7 @@ h1 {
    
     </div>
 
-    <p class="creditos">Desenvolvido por Ana Luiza Stábile</p>
+    <p class="creditos">Desenvolvido por Ana Luiza Stabile</p>
     <button id="btnStart" class="btn-start">Iniciar Jogo</button>
     <button id="btnSobre" class="btn-start" style="margin-top: 15px;">Sobre</button>
   </div>
@@ -464,7 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
     box.style.maxWidth = '400px';
 
     const texto = document.createElement('p');
-    texto.innerText = "'Jogo de Vestir' é um jogo de moda desenvolvido e ilustrado por Ana Luiza Stábile, aluna do 2º ano do Ensino Médio. O jogo busca, de forma divertida e criativa, sortear uma ocasião aleatória em que o jogador explore todo o seu senso de estilo!";
+    texto.innerText = "'Comfy Style' é um jogo de moda desenvolvido e ilustrado por Ana Luiza Stabile, aluna do 2º ano do Ensino Médio. O jogo busca, de forma divertida e criativa, sortear uma ocasião aleatória em que o jogador explore todo o seu senso de estilo!";
     texto.style.marginBottom = '16px';
 
     const botao = document.createElement('button');
@@ -524,7 +524,7 @@ document.getElementById("btnPronto").addEventListener("click", () => {
   }
 
   // ================== FUNÇÃO POPUP OCASIÃO ==================
-  const ocasioes = ["encontro romântico","jantar elegante","piquenique","escola","acampamento","circo", "parque", "shopping"];
+  const ocasioes = ["pôr do sol","aquário","pescar","ir à escola","acampamento","passeio chuvoso", "jardim encantado", "nascer do sol", "visitar o lago"];
   function mostrarOcasionPopUp() {
     soltarConfetes();
     const tema = ocasioes[Math.floor(Math.random() * ocasioes.length)];
